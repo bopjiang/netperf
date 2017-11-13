@@ -1,0 +1,11 @@
+hosts:
+  myrouter:
+    tcp: 192.168.1.1:80
+    ping: 192.168.1.1
+
+  baidu:
+    ping: www.baidu.com
+    tcp:  www.baidu.com
+
+  qq:
+    http: http://www.qq.com
