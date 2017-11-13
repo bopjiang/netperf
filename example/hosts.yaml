@@ -1,11 +1,12 @@
 hosts:
-  myrouter:
+  - name: router
     tcp: 192.168.1.1:80
     ping: 192.168.1.1
 
-  baidu:
+  - name: baidu
     ping: www.baidu.com
     tcp:  www.baidu.com
+    http: https://www.baidu.com
 
-  qq:
+  - name: qq
     http: http://www.qq.com
