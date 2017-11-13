@@ -4,12 +4,16 @@ import (
 	"flag"
 	"log"
 	"net/http"
+
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 var (
-	listenAddrPort = flag.String("L", "127.0.0.1:8080", "address and ports to export metrics")
+	addr = flag.String("listen", "127.0.0.1:8080", "The address to listen on for HTTP requests.")
 )
 
 func main() {
-	log.Fatal(http.ListenAndServe(*listenAddrPort, nil))
+	flag.Parse()
+	http.Handle("/metrics", promhttp.Handler())
+	log.Fatal(http.ListenAndServe(*addr, nil))
 }
