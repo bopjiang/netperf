@@ -1,2 +1,5 @@
 package: github.com/bopjiang/netperf
-import: []
+import:
+- package: github.com/prometheus/client_golang
+  version: ^0.8.0
+- package: gopkg.in/yaml.v2

@@ -1,0 +1,8 @@
+hash: af2617049963aca52824263f93d838c33d561bb7fe43107d5f9e02cfc0fcd1a6
+updated: 2017-11-13T03:22:39.631235638Z
+imports:
+- name: github.com/prometheus/client_golang
+  version: 967789050ba94deca04a5e84cce8ad472ce313c1
+- name: gopkg.in/yaml.v2
+  version: eb3733d160e74a9c7e442f435eb3bea458e1d19f
+testImports: []
