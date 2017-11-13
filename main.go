@@ -73,6 +73,7 @@ func perfHTTP(name string, endpoint string, timeout time.Duration) {
 		ConnectStart: func(_, _ string) {
 			if t1.IsZero() {
 				// connecting to IP
+				t0 = time.Now()
 				t1 = time.Now()
 			}
 		},
@@ -107,6 +108,6 @@ func perfHTTP(name string, endpoint string, timeout time.Duration) {
 
 	resp.Body.Close()
 	//t5 := time.Now() // after read body
-	TCPConnectTime.WithLabelValues(name).Set(float64(t1.Sub(t0)))
+	TCPConnectTime.WithLabelValues(name).Set(float64(t2.Sub(t0)))
 
 }
