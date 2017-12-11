@@ -1,0 +1,37 @@
+version: "3"
+
+services:
+  prometheus-server:
+    image: prom/prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--web.console.libraries=/usr/share/prometheus/console_libraries"
+      - "--web.console.templates=/usr/share/prometheus/consoles"
+      - "--web.enable-lifecycle"
+    ports:
+      - 9090:9090
+    #links:
+      #- cadvisor:cadvisor
+      #- metrics-gateway:metrics-gateway
+    volumes:
+      - ./conf/prometheus.yml:/etc/prometheus/prometheus.yml
+      #- ./data/prometheus:/prometheus   ## Not working, permission problem
+      - prometheus-data-volume:/prometheus
+      
+  grafana-ui:
+    image: grafana/grafana
+    ports:
+      - 3000:3000
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=secret-to-be-changed
+    links:
+      - prometheus-server:prometheus
+    volumes:
+      - ./conf/grafana:/etc/grafana
+      - ./data/grafana:/var/lib/grafana
+      - ./data/grafana_log:/var/log/grafana
+
+volumes:
+  prometheus-data-volume:
+
